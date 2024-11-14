@@ -12,4 +12,4 @@ data class SalaryDto(
 )
 
 fun SalaryDto.toDomain(): Salary = Salary(full = full, short = short)
-fun Salary.toData(): SalaryDto =SalaryDto(full = full, short = short)
+fun Salary.toData(): SalaryDto =SalaryDto(full = full?: "", short = short?: "")

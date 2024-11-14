@@ -22,8 +22,8 @@ fun AddressDto.toDomain(): Address {
 }
 fun Address.toData(): AddressDto {
     return AddressDto(
-        house = house,
-        street = street,
-        town = town
+        house = house?: "",
+        street = street?: "",
+        town = town?: ""
     )
 }

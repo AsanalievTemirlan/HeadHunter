@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class OfferDto(
     @SerializedName("button")
-    val buttonDto: ButtonDto,
+    val buttonDto: ButtonDto? = null,
     @SerializedName("id")
     val id: String,
     @SerializedName("link")
@@ -15,6 +15,6 @@ data class OfferDto(
     val title: String
 )
 
-fun OfferDto.toDomain(): Offer = Offer(buttonModel = buttonDto.toDomain(), id = id, link = link, title = title)
+fun OfferDto.toDomain(): Offer = Offer(buttonModel = buttonDto?.toDomain(), id = id, link = link, title = title)
 
-fun Offer.toData(): OfferDto = OfferDto(buttonDto = buttonModel.toData(), id = id, link = link, title = title)
+fun Offer.toData(): OfferDto = OfferDto(buttonDto = buttonModel?.toData(), id = id?: "", link = link?: "", title = title?: "")

@@ -17,3 +17,5 @@ fun BaseResponseDto.toDomain(): BaseResponseModel{
         vacancies.map { it.toDomain() }
     )
 }
+
+fun BaseResponseModel.toData(): BaseResponseDto = BaseResponseDto(offers!!.map { it.toData()}, vacancies!!.map { it.toData()})

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id ("dagger.hilt.android.plugin") // Этот плагин Hilt
 }
 
 android {
@@ -61,6 +62,11 @@ dependencies {
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+    implementation(libs.converter.gson)
+
+
+    implementation(libs.hilt.android.v2511)
+    kapt(libs.dagger.hilt.android.compiler)
 
     implementation(project(":domain"))
     implementation(project(":data"))

@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName
 
 data class ButtonDto(
     @SerializedName("text")
-    val text: String
+    val text: String?
 )
 
 fun ButtonDto.toDomain(): ButtonModel{
-    return ButtonModel(text = text)
+    return ButtonModel(text = text ?: "")
 }
 
 fun ButtonModel.toData(): ButtonDto{
-    return ButtonDto(text = text)
+    return ButtonDto(text = text?: "")
 }

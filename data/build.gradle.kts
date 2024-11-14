@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+
 }
 
 android {
@@ -46,11 +47,18 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
 
 
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
 
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+
+    implementation(libs.hilt.android.v2511)
+    kapt(libs.dagger.hilt.android.compiler)
 
     implementation(project(":domain"))
 

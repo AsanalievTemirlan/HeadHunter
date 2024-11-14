@@ -54,17 +54,17 @@ fun VacancyDto.toDomain(): Vacancy = Vacancy(
 
 fun Vacancy.toData(): VacancyDto = VacancyDto(
     address.toData(),
-    appliedNumber,
-    company,
-    description,
+    appliedNumber?: 0,
+    company?: "",
+    description?: "",
     experience.toData(),
-    id,
-    isFavorite,
-    lookingNumber,
-    publishedDate,
-    questions,
-    responsibilities,
-    salary.toData(),
-    schedules,
-    title
+    id?: "",
+    isFavorite?: false,
+    lookingNumber?: 0,
+    publishedDate?: "",
+    questions?: emptyList(),
+    responsibilities?: "",
+    salary.toData() ,
+    schedules?: emptyList(),
+    title?: ""
 )

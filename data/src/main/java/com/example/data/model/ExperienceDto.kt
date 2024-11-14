@@ -12,7 +12,7 @@ data class ExperienceDto(
 )
 
 fun ExperienceDto.toDomain(): Experience {
-    return Experience(previewText = previewText, text = text)
+    return Experience(previewText = previewText?: "", text = text?: "")
 }
 
-fun Experience.toData(): ExperienceDto = ExperienceDto(previewText = previewText, text = text)
+fun Experience.toData(): ExperienceDto = ExperienceDto(previewText = previewText?: "", text = text?: "")

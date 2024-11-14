@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_1"
+            android:id="@+id/tv_looking_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/green"
@@ -33,7 +33,7 @@
             tools:text="Сейчас просматривает 7 человек" />
 
         <TextView
-            android:id="@+id/tv_2"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -42,7 +42,7 @@
             tools:text="Дизайнер для маркетплейсов Wildberries, Ozon " />
 
         <TextView
-            android:id="@+id/tv_3"
+            android:id="@+id/tv_salary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -52,7 +52,7 @@
             tools:text="1500-2900 Br" />
 
         <TextView
-            android:id="@+id/tv_4"
+            android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -61,7 +61,7 @@
             tools:text="Минск" />
 
         <TextView
-            android:id="@+id/tv_5"
+            android:id="@+id/tv_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -72,7 +72,7 @@
             tools:text="Еком дизайн" />
 
         <TextView
-            android:id="@+id/tv_6"
+            android:id="@+id/tv_public_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
