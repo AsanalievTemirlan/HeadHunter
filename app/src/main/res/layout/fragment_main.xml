@@ -55,7 +55,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/grey_3"
                 android:textSize="16sp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_search"
                 tools:text="16789 вакансия" />
@@ -72,7 +72,8 @@
                 android:text="@string/correspondence"
                 android:textColor="@color/blue"
                 android:textSize="16sp"
-                android:visibility="visible"
+                android:visibility="gone"
+                android:layout_marginBottom="10dp"
                 app:drawableEndCompat="@drawable/ic_correspondence"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_settings" />
@@ -88,6 +89,7 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:visibility="visible"
+            android:layout_gravity="start"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_recomendation" />
 
@@ -116,7 +118,9 @@
             android:layout_marginVertical="8dp"
             android:backgroundTint="@color/blue"
             android:paddingVertical="10dp"
+            android:layout_marginHorizontal="16dp"
             tools:text="Еще 143 вакансии"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="normal"

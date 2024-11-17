@@ -104,8 +104,6 @@ class MainFragment : Fragment() {
             }
             false
         }
-
-
     }
 
     private fun updateVacanciesList(vacancies: List<VacancyUi>) {
@@ -119,7 +117,7 @@ class MainFragment : Fragment() {
         }
         binding.rvRec.apply {
             layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = adapterRecommendation
         }
         viewModel.viewModelScope.launch {
@@ -143,8 +141,3 @@ class MainFragment : Fragment() {
 
     }
 }
-
-
-
-
-

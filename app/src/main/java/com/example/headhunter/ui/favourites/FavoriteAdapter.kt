@@ -1,5 +1,6 @@
-package com.example.headhunter.ui.main
+package com.example.headhunter.ui.favourites
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,14 +12,16 @@ import com.example.headhunter.uiModel.VacancyUi
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class VacanciesAdapter() :
-    ListAdapter<VacancyUi, VacanciesAdapter.VacanciesViewHolder>(DiffUtilCallback()) {
+class FavoriteAdapter() :
+    ListAdapter<VacancyUi, FavoriteAdapter.VacanciesViewHolder>(DiffUtilCallback()) {
     inner class VacanciesViewHolder(private val binding: ItemVacanciesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(model: VacancyUi) = with(binding) {
+            Log.e("ololo", "onBind: ${model.isFavorite}")
             imgHeart.setImageResource(if (model.isFavorite) R.drawable.ic_heart_blue else R.drawable.ic_heart)
-            tvSalary.text = if (model.salaryUi.full == "Уровень дохода не указан") model.salaryUi.full else model.salaryUi.short
+            tvSalary.text =
+                if (model.salaryUi.full == "Уровень дохода не указан") model.salaryUi.full else model.salaryUi.short
             tvTitle.text = model.title
             tvLookingNumber.text = lookingNumber(model.lookingNumber)
             tvLocation.text = model.addressUi.town
