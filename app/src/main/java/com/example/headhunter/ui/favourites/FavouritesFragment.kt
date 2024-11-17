@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.headhunter.R
 import com.example.headhunter.databinding.FragmentFavouritesBinding
 import com.example.headhunter.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,10 +45,8 @@ class FavouritesFragment : Fragment() {
                 when (it) {
                     is UiState.Loading -> {}
                     is UiState.Success -> {
-                        if (it.data.vacancies.any { vacancy -> vacancy.isFavorite }) {
-                            favoritesAdapter.submitList(it.data.vacancies)
-                        }
-                        binding.tvCount.text = vacanciesCount(it.data.vacancies.size)
+                        favoritesAdapter.submitList(it.data.vacancies.filter { it.isFavorite })
+                        binding.tvCount.text = vacanciesCount(it.data.vacancies.filter { it.isFavorite }.size)
                     }
 
                     is UiState.Error -> {
