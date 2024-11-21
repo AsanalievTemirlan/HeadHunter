@@ -5,20 +5,26 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.data.local.entity.BaseResponseEntity
 import com.example.headhunter.R
 import com.example.headhunter.databinding.ItemVacanciesBinding
+import com.example.headhunter.uiModel.BaseResponseUi
 import com.example.headhunter.uiModel.VacancyUi
+import com.example.headhunter.uiModel.toDomain
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class VacanciesAdapter() :
+class VacanciesAdapter(
+    private val click: OnItemActionListener
+) :
     ListAdapter<VacancyUi, VacanciesAdapter.VacanciesViewHolder>(DiffUtilCallback()) {
     inner class VacanciesViewHolder(private val binding: ItemVacanciesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(model: VacancyUi) = with(binding) {
             imgHeart.setImageResource(if (model.isFavorite) R.drawable.ic_heart_blue else R.drawable.ic_heart)
-            tvSalary.text = if (model.salaryUi.full == "Уровень дохода не указан") model.salaryUi.full else model.salaryUi.short
+            tvSalary.text =
+                if (model.salaryUi.full == "Уровень дохода не указан") model.salaryUi.full else model.salaryUi.short
             tvTitle.text = model.title
             tvLookingNumber.text = lookingNumber(model.lookingNumber)
             tvLocation.text = model.addressUi.town
@@ -27,6 +33,7 @@ class VacanciesAdapter() :
             tvPublicDate.text = publicDate(model.publishedDate)
 
             imgHeart.setOnClickListener {
+                click.updateClicked(model.id, !model.isFavorite)
                 model.isFavorite = !model.isFavorite
                 imgHeart.setImageResource(if (model.isFavorite) R.drawable.ic_heart_blue else R.drawable.ic_heart)
             }
@@ -77,5 +84,9 @@ class VacanciesAdapter() :
 
     override fun onBindViewHolder(holder: VacanciesViewHolder, position: Int) {
         holder.onBind(getItem(position))
+    }
+
+    interface OnItemActionListener {
+        fun updateClicked(id: String, isFavorite: Boolean)
     }
 }

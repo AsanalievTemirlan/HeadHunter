@@ -1,4 +1,4 @@
-package com.example.data.model
+package com.example.data.network.model
 
 
 import com.example.domain.model.ButtonModel
@@ -13,6 +13,6 @@ fun ButtonDto.toDomain(): ButtonModel{
     return ButtonModel(text = text ?: "")
 }
 
-fun ButtonModel.toData(): ButtonDto{
+fun ButtonModel.toData(): ButtonDto {
     return ButtonDto(text = text?: "")
 }

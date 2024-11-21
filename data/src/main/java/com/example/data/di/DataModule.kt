@@ -1,13 +1,21 @@
 package com.example.data.di
 
-import com.example.data.api.HHApiService
+import android.content.Context
+import androidx.room.Room
+import com.example.data.local.dao.HHDao
+import com.example.data.local.db.HHDataBase
+import com.example.data.network.api.HHApiService
 import com.example.data.repository.HHRepositoryImpl
 import com.example.data.utils.Constants.BASE_URL
 import com.example.domain.repository.HHRepository
+import com.example.domain.usecase.GetDataRoomUseCase
 import com.example.domain.usecase.GetDataUseCase
+import com.example.domain.usecase.InsertDataUseCase
+import com.example.domain.usecase.UpdateDataUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -58,9 +66,35 @@ object DataModule {
     @Provides
     @Singleton
     fun provideHHRepository(
-        apiService: HHApiService
+        apiService: HHApiService,
+        dao: HHDao
     ): HHRepository {
-        return HHRepositoryImpl(apiService)
+        return HHRepositoryImpl(apiService, dao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDataBase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context, HHDataBase::class.java, "database"
+    ).fallbackToDestructiveMigration().build()
+
+
+    @Provides
+    @Singleton
+    fun provideDao(database: HHDataBase) = database.HHDao()
+
+
+    @Provides
+    fun provideGetDataRoomUseCase(repository: HHRepository): GetDataRoomUseCase {
+        return GetDataRoomUseCase(repository)
+    }
+    @Provides
+    fun provideUpdateDataUseCase(repository: HHRepository): UpdateDataUseCase {
+        return UpdateDataUseCase(repository)
+    }
+    @Provides
+    fun provideInsertDataUseCase(repository: HHRepository): InsertDataUseCase {
+        return InsertDataUseCase(repository)
     }
 
 

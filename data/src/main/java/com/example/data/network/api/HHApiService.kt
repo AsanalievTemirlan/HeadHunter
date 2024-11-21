@@ -1,6 +1,6 @@
-package com.example.data.api
+package com.example.data.network.api
 
-import com.example.data.model.BaseResponseDto
+import com.example.data.network.model.BaseResponseDto
 import com.example.domain.model.BaseResponseModel
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.example.data.model
+package com.example.data.network.model
 
 
 import com.example.domain.model.Salary
@@ -12,4 +12,4 @@ data class SalaryDto(
 )
 
 fun SalaryDto.toDomain(): Salary = Salary(full = full, short = short)
-fun Salary.toData(): SalaryDto =SalaryDto(full = full?: "", short = short?: "")
+fun Salary.toData(): SalaryDto = SalaryDto(full = full?: "", short = short?: "")

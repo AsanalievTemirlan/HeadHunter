@@ -21,11 +21,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), VacanciesAdapter.OnItemActionListener {
 
     private val binding: FragmentMainBinding by lazy { FragmentMainBinding.inflate(layoutInflater) }
     private val viewModel: MainViewModel by viewModels()
-    private val adapterVacancies by lazy { VacanciesAdapter() }
+    private val adapterVacancies by lazy { VacanciesAdapter(this@MainFragment) }
     private val adapterRecommendation by lazy { RecommendationAdapter() }
     private var isExpanded = false
 
@@ -125,6 +125,7 @@ class MainFragment : Fragment() {
                 when (it) {
                     is UiState.Loading -> {}
                     is UiState.Success -> {
+                        Log.e("ololo", "init: ${it.data.vacancies}", )
                         updateVacanciesList(it.data.vacancies)
                         adapterRecommendation.submitList(it.data.offerUis)
                         binding.btnVacancies.text = "Ещё " + vacanciesCount(it.data.vacancies.size)
@@ -139,5 +140,9 @@ class MainFragment : Fragment() {
             }
         }
 
+    }
+
+    override fun updateClicked(id: String, isFavorite: Boolean) {
+        viewModel.update(id, isFavorite)
     }
 }
